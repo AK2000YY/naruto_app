@@ -6,6 +6,7 @@ part 'language_event.dart';
 part 'language_state.dart';
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
+
   LanguageBloc() : super(const LanguageInitial()) {
     on<LanguageStarted>(_onStarted);
     on<LanguageChanged>(_onChange);
@@ -13,8 +14,6 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
 
   Future<void> _onStarted(LanguageStarted event, Emitter<LanguageState> emit) async {
     final languageCode = await LanguageCacheHelper.getCachedLanguage();
-    print("Ak2000yy");
-    print(languageCode);
     emit(LanguageLoaded(languageCode));
   }
 
@@ -22,4 +21,5 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     await LanguageCacheHelper.cacheLanguageCode(event.languageCode!);
     emit(LanguageLoaded(event.languageCode));
   }
+
 }

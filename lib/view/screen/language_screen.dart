@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:naruto_app/business_logic/language/language_bloc.dart';
 import 'package:naruto_app/core/localization/localization.dart';
+import 'package:naruto_app/view/screen/main_screen.dart';
 import 'package:naruto_app/view/widget/language/custom_button.dart';
 
 import '../../core/constant/image.dart';
@@ -40,7 +43,7 @@ class LanguageScreen extends StatelessWidget {
                 right: 0,
                 bottom: screenHeight * 1.7/6 ,
                 child: Container(
-                  margin: const EdgeInsetsDirectional.only(start: 10, bottom: 5),
+                  margin: const EdgeInsetsDirectional.only(start: 20, bottom: 10),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,8 +73,20 @@ class LanguageScreen extends StatelessWidget {
                         child: Text("choose".tr(context), style: const TextStyle(fontSize: 30),),
                       ),
                       CustomButton(textButton: "arabic".tr(context), image: AppImage.arabic, onPressed: (){
+                        context.read<LanguageBloc>().add(const LanguageChanged('ar'));
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const MainScreen()
+                          )
+                        );
                       }),
                       CustomButton(textButton: "english".tr(context), image: AppImage.english, onPressed: (){
+                        context.read<LanguageBloc>().add(const LanguageChanged('en'));
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (context) => const MainScreen()
+                            )
+                        );
                       },)
                     ],
                   ),

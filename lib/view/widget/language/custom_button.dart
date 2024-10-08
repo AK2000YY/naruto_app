@@ -26,13 +26,19 @@ class CustomButton extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              Text(
+                textButton,
+                style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.white
+                )
+              ),
               Image.asset(
                 image,
                 width: 40,
                 height: 40,
                 fit: BoxFit.cover,
-              ),
-              Text(textButton, style: const TextStyle(fontSize: 20, color: Colors.white),)
+              )
             ],
           ),
         ),
