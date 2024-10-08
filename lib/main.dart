@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
             builder: (context, state) =>
                 MaterialApp(
                   title: 'Flutter Demo',
+                  debugShowCheckedModeBanner: false,
                   locale: state.languageCode != null ? Locale(state.languageCode!) : null,
                   supportedLocales: const [Locale('en'), Locale('ar')],
                   localizationsDelegates: const [
