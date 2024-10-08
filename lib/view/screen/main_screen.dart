@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:naruto_app/core/constant/color.dart';
 import 'package:naruto_app/core/localization/localization.dart';
 import 'package:naruto_app/data/data_source/main_screen_list.dart';
+import 'package:naruto_app/view/widget/main/list_view_item.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -35,42 +36,7 @@ class MainScreen extends StatelessWidget {
                       width: 0.8,
                     ),
                   ),
-                  child:  ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Column(
-                      children: [
-                        Expanded(
-                            flex: 9,
-                            child: Image.asset(
-                              mainScreenItems[index].image,
-                              fit: BoxFit.fill,
-                            )
-                        ),
-                        Expanded(
-                            flex: 2,
-                            child: Container(
-                              height: double.infinity,
-                              width: double.infinity,
-                              color: AppColor.onBackGround,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    mainScreenItems[index].title.tr(context),
-                                    style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
-                                  ),
-                                  const Icon(
-                                      Icons.arrow_forward,
-                                      color: Colors.white,
-                                  )
-                                ],
-                              ),
-                            )
-                        )
-                      ],
-                    ),
-                  ),
+                  child:  ListViewItem(mainScreenItem: mainScreenItems[index]),
                 )
         ),
       ),
