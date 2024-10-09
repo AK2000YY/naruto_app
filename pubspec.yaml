@@ -43,6 +43,8 @@ dependencies:
   back_button_interceptor: ^7.0.3
   http: ^1.2.2
   shared_preferences: ^2.3.2
+  pair: ^0.1.2
+
 
 dev_dependencies:
   flutter_test:
