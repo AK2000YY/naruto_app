@@ -27,11 +27,9 @@ class ListViewItem extends StatelessWidget {
                   placeholder: AppImage.loading,
                   image: characterImage,
                   imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                    return Image.asset(AppImage.loading);
+                    return Image.asset(AppImage.noImage);
                   },
-                  placeholderFit: BoxFit.contain,
-                  width: 100,
-                  height: 100,
+                  placeholderFit: BoxFit.cover,
                   fit: BoxFit.fill,
                 ),
               )

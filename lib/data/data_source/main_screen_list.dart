@@ -1,5 +1,4 @@
 import 'package:naruto_app/core/constant/image.dart';
-import 'package:naruto_app/core/localization/localization.dart';
 import 'package:naruto_app/data/model/main_screen_item.dart';
 
 List<MainScreenItem> mainScreenItems = [

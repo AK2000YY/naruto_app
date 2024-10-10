@@ -15,19 +15,12 @@ class AllCharactersBloc extends Bloc<AllCharactersEvent, AllCharactersState> {
   }
 
   Future<void> _onFetched(AllCharactersFetched event, Emitter<AllCharactersState> emit) async {
-    if(state is AllCharactersLoaded || state.hasReachedMax!) return;
+    if(state.hasReachedMax ?? false || state is AllCharactersLoaded ) return;
     emit(AllCharactersLoaded(state.characters??[]));
     try {
-      List<Character> characters = await _charactersRepository.getCharacters(1);
-      for(int i=0;i<characters.length;++i) {
-        print(characters[i].name??"");
-        print(characters[i].images![0]??"");
-      }
-      if(characters.isEmpty) {
-        emit(AllCharactersSuccess(state.characters!, true));
-      } else {
-        emit(AllCharactersSuccess([...?state.characters, ...characters], false));
-      }
+      int page = (state.characters!.length/10).floor() + 1;
+      List<Character> characters = await _charactersRepository.getCharacters(page);
+      emit(characters.isEmpty ? AllCharactersSuccess(state.characters!, true) : AllCharactersSuccess([...?state.characters, ...characters], false));
     } catch(err) {
       emit(AllCharactersFailure(state.characters!, err.toString()));
     }

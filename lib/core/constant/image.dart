@@ -12,4 +12,5 @@ class AppImage {
   static const teams = '$image/teams.JPG';
   static const villages = '$image/villages.WEBP';
   static const loading = '$image/loading.GIF';
+  static const noImage = '$image/noImage.PNG';
 }
