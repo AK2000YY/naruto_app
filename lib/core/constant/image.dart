@@ -11,4 +11,5 @@ class AppImage {
   static const tailedbeasts = '$image/tailedbeasts.JPG';
   static const teams = '$image/teams.JPG';
   static const villages = '$image/villages.WEBP';
+  static const loading = '$image/loading.GIF';
 }

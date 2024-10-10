@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:naruto_app/core/localization/localization.dart';
-import 'package:naruto_app/data/model/main_screen_item.dart';
+import 'package:naruto_app/core/constant/image.dart';
 
 import '../../../core/constant/color.dart';
 
 class ListViewItem extends StatelessWidget {
 
-  final MainScreenItem mainScreenItem;
+  final String characterName;
+  final String characterImage;
   final void Function() onPress;
 
-  const ListViewItem({super.key, required this.mainScreenItem, required this.onPress});
+  const ListViewItem({super.key, required this.characterName, required this.characterImage, required this.onPress});
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +19,21 @@ class ListViewItem extends StatelessWidget {
         children: [
           Expanded(
               flex: 9,
-              child: Image.asset(
-                mainScreenItem.image,
-                fit: BoxFit.fill,
+              child: Container(
+                width: double.infinity,
+                height: double.infinity,
+                color: Colors.white,
+                child: FadeInImage.assetNetwork(
+                  placeholder: AppImage.loading,
+                  image: characterImage,
+                  imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                    return Image.asset(AppImage.loading);
+                  },
+                  placeholderFit: BoxFit.contain,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.fill,
+                ),
               )
           ),
           Expanded(
@@ -37,9 +49,9 @@ class ListViewItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                        padding: const EdgeInsets.fromLTRB(0, 0, 10, 0),
                         child: Text(
-                          mainScreenItem.title.tr(context),
+                          characterName,
                           style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),
                         ),
                       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:naruto_app/core/constant/color.dart';
 import 'package:naruto_app/core/localization/localization.dart';
 import 'package:naruto_app/data/data_source/main_screen_list.dart';
+import 'package:naruto_app/view/screen/characters_screen.dart';
 import 'package:naruto_app/view/widget/main/list_view_item.dart';
 
 class MainScreen extends StatelessWidget {
@@ -36,10 +37,30 @@ class MainScreen extends StatelessWidget {
                       width: 0.8,
                     ),
                   ),
-                  child:  ListViewItem(mainScreenItem: mainScreenItems[index]),
+                  child:  ListViewItem(
+                      mainScreenItem: mainScreenItems[index],
+                      onPress: () {
+                        switch(index) {
+                          case 0: toScreen(
+                              context,
+                              const CharactersScreen()
+                          );
+                          break;
+                        }
+                      }
+                  ),
                 )
         ),
       ),
     );
   }
+}
+
+
+void toScreen(context, widget){
+  Navigator.of(context).push(
+    MaterialPageRoute(
+        builder: (context) => widget
+    )
+  );
 }
