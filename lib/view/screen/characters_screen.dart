@@ -57,7 +57,7 @@ class _AllCharactersState extends State<AllCharacters> {
     if (!_scrollController.hasClients) return false;
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.offset;
-    return currentScroll >= (maxScroll * 0.99);
+    return currentScroll >= maxScroll;
   }
 
   @override

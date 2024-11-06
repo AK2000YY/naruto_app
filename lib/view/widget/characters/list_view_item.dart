@@ -24,12 +24,12 @@ class ListViewItem extends StatelessWidget {
                 height: double.infinity,
                 color: Colors.white,
                 child: FadeInImage.assetNetwork(
-                  placeholder: AppImage.loading,
+                  placeholder: AppImage.sharingLoad,
                   image: characterImage,
                   imageErrorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
                     return Image.asset(AppImage.noImage);
                   },
-                  placeholderFit: BoxFit.cover,
+                  placeholderFit: BoxFit.scaleDown,
                   fit: BoxFit.fill,
                 ),
               )
