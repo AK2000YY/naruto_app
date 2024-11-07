@@ -15,8 +15,12 @@ final class AllCharactersInitial extends AllCharactersState {
   const AllCharactersInitial(List<Character> characters): super(characters: characters, hasReachedMax: false);
 }
 
-final class AllCharactersLoaded extends AllCharactersState {
-  const AllCharactersLoaded(List<Character> characters): super(characters: characters, hasReachedMax: false);
+final class AllCharactersLoad extends AllCharactersState {
+  const AllCharactersLoad(): super(characters: const [], hasReachedMax: false);
+}
+
+final class AllCharactersPaging extends AllCharactersState {
+  const AllCharactersPaging(List<Character> characters): super(characters: characters, hasReachedMax: false);
 }
 
 final class AllCharactersSuccess extends AllCharactersState {

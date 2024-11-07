@@ -15,8 +15,8 @@ class AllCharactersBloc extends Bloc<AllCharactersEvent, AllCharactersState> {
   }
 
   Future<void> _onFetched(AllCharactersFetched event, Emitter<AllCharactersState> emit) async {
-    if(state.hasReachedMax ?? false || state is AllCharactersLoaded ) return;
-    emit(AllCharactersLoaded(state.characters??[]));
+    if(state.hasReachedMax ?? false || state is AllCharactersPaging || state is AllCharactersLoad ) return;
+    emit(state is AllCharactersInitial ? const AllCharactersLoad() : AllCharactersPaging(state.characters??[]));
     try {
       int page = (state.characters!.length/10).floor() + 1;
       List<Character> characters = await _charactersRepository.getCharacters(page);

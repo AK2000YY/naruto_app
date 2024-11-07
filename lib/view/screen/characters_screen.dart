@@ -71,16 +71,16 @@ class _AllCharactersState extends State<AllCharacters> {
               buildWhen: (cur, prev) => cur.runtimeType != prev.runtimeType,
               builder: (context, state) =>
               switch(state) {
-                AllCharactersInitial() =>
-                const Center(child: CircularProgressIndicator(color: Colors.amber)),
-                AllCharactersSuccess() || AllCharactersLoaded() =>
-                    CharactersList(
-                        scrollController: _scrollController,
-                        characters: state.characters!,
-                        hasReachedMax: state.hasReachedMax ?? false,
-                        isVisible: true
-                    ),
-                AllCharactersFailure() => const Center(child: Text("failed"),),
+                AllCharactersInitial() || AllCharactersLoad() =>
+                  const Center(child: CircularProgressIndicator(color: Colors.amber)),
+                AllCharactersSuccess() || AllCharactersPaging() =>
+                  CharactersList(
+                      scrollController: _scrollController,
+                      characters: state.characters!,
+                      hasReachedMax: state.hasReachedMax ?? false,
+                      isVisible: true
+                  ),
+                AllCharactersFailure() => const Center(child: Text("your connection is failed"),),
               }
           ),
         ),
