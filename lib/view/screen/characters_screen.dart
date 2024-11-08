@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naruto_app/business_logic/all_characters/all_characters_bloc.dart';
+import 'package:naruto_app/core/constant/color.dart';
 import 'package:naruto_app/data/repository/all_characters_repository.dart';
 import 'package:http/http.dart' as http;
 
@@ -49,6 +50,12 @@ class _AllCharactersState extends State<AllCharacters> {
     _scrollController.addListener(_onScroll);
   }
 
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.dispose();
+  }
+
   _onScroll() {
     if(_isBottom) context.read<AllCharactersBloc>().add(AllCharactersFetched());
   }
@@ -63,12 +70,18 @@ class _AllCharactersState extends State<AllCharacters> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("Characters", style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white)),
+        centerTitle: true,
+        backgroundColor: AppColor.backGround,
+      ),
       body: SafeArea(
-        child: SizedBox(
+        child: Container(
+          color: AppColor.backGround,
           width: double.infinity,
           height: double.infinity,
           child: BlocBuilder<AllCharactersBloc, AllCharactersState>(
-              buildWhen: (cur, prev) => cur.runtimeType != prev.runtimeType,
+              // buildWhen: (cur, prev) => cur.runtimeType != prev.runtimeType,
               builder: (context, state) =>
               switch(state) {
                 AllCharactersInitial() || AllCharactersLoad() =>
@@ -77,10 +90,14 @@ class _AllCharactersState extends State<AllCharacters> {
                   CharactersList(
                       scrollController: _scrollController,
                       characters: state.characters!,
-                      hasReachedMax: state.hasReachedMax ?? false,
-                      isVisible: true
+                      hasReachedMax: state.hasReachedMax ?? false
                   ),
-                AllCharactersFailure() => const Center(child: Text("your connection is failed"),),
+                AllCharactersFailure() => Center(
+                  child: Text(
+                    state.error!,
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
+                  )
+                ),
               }
           ),
         ),
