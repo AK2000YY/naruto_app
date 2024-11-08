@@ -15,7 +15,7 @@ class MainScreen extends StatelessWidget {
         backgroundColor: AppColor.backGround,
         title: Text(
             "introduction".tr(context),
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(color: Colors.white)
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white)
         ),
         centerTitle: true,
       ),

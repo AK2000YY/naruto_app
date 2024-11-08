@@ -45,20 +45,21 @@ class _ForAllCharacterBlocState extends State<ForAllCharacterBloc> {
         child: //const AllCharacters()
         Scaffold(
           backgroundColor: AppColor.backGround,
-          appBar: AppBar(
-            backgroundColor: AppColor.backGround,
-            title: Text("allCharacter".tr(context), style: Theme.of(context).textTheme.titleMedium?.copyWith(color: Colors.white),),
-            centerTitle: true,
-            leading: InkWell(
-              child: const Icon(
-                  Icons.arrow_back, color: Colors.white
+          appBar: currentIndex == 0 ?
+            AppBar(
+              backgroundColor: AppColor.backGround,
+              title: Text("allCharacter".tr(context), style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white),),
+              centerTitle: true,
+              leading: InkWell(
+                child: const Icon(
+                    Icons.arrow_back, color: Colors.white
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
               ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            automaticallyImplyLeading: true,
-          ),
+              automaticallyImplyLeading: true,
+            ) : null,
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: currentIndex,
             backgroundColor: AppColor.backGround,
@@ -74,7 +75,7 @@ class _ForAllCharacterBlocState extends State<ForAllCharacterBloc> {
               });
             },
           ),
-          body: screens[currentIndex],
+          body: SafeArea(child: screens[currentIndex]),
         )
     );
   }

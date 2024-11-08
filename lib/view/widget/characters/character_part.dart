@@ -41,31 +41,29 @@ class _AllCharactersState extends State<AllCharacters> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Container(
-        color: AppColor.backGround,
-        width: double.infinity,
-        height: double.infinity,
-        child: BlocBuilder<AllCharactersBloc, AllCharactersState>(
-          // buildWhen: (cur, prev) => cur.runtimeType != prev.runtimeType,
-            builder: (context, state) =>
-            switch(state) {
-              AllCharactersInitial() || AllCharactersLoad() =>
-              const Center(child: CircularProgressIndicator(color: Colors.amber)),
-              AllCharactersSuccess() || AllCharactersPaging() =>
-                  CharactersList(
-                      scrollController: _scrollController,
-                      characters: state.characters!,
-                      hasReachedMax: state.hasReachedMax ?? false
-                  ),
-              AllCharactersFailure() => Center(
-                  child: Text(
-                    state.error!,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
-                  )
-              ),
-            }
-        ),
+    return Container(
+      color: AppColor.backGround,
+      width: double.infinity,
+      height: double.infinity,
+      child: BlocBuilder<AllCharactersBloc, AllCharactersState>(
+        // buildWhen: (cur, prev) => cur.runtimeType != prev.runtimeType,
+          builder: (context, state) =>
+          switch(state) {
+            AllCharactersInitial() || AllCharactersLoad() =>
+            const Center(child: CircularProgressIndicator(color: Colors.amber)),
+            AllCharactersSuccess() || AllCharactersPaging() =>
+                CharactersList(
+                    scrollController: _scrollController,
+                    characters: state.characters!,
+                    hasReachedMax: state.hasReachedMax ?? false
+                ),
+            AllCharactersFailure() => Center(
+                child: Text(
+                  state.error!,
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.white),
+                )
+            ),
+          }
       ),
     );
   }
