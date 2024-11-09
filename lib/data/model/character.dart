@@ -28,5 +28,17 @@ class Character {
     );
   }
 
+  Map<String, Object?> toMap() {
+    return {
+      "id": id,
+      "name": name
+    };
+  }
+
+  Character.fromMap(Map<String, Object?> map) {
+    id = map["id"] as int?;
+    name = map["name"] as String;
+  }
+
 }
 
