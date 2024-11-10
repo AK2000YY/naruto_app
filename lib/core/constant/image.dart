@@ -1,6 +1,8 @@
 class AppImage {
   static const image = 'assets/image';
 
+  static const narutoLogo = '$image/naruto_logo.PNG';
+  static const akatsukiLogo = '$image/akatsuki_logo.PNG';
   static const language = '$image/language.PNG';
   static const arabic = '$image/arabic.PNG';
   static const english = '$image/english.PNG';
