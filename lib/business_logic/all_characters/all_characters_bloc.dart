@@ -20,7 +20,6 @@ class AllCharactersBloc extends Bloc<AllCharactersEvent, AllCharactersState> {
   }
 
   Future<void> _onFetched(AllCharactersFetched event, Emitter<AllCharactersState> emit) async {
-    print("AK2000YY EVENT \n");
     if(state.hasReachedMax ?? false) return;
     emit(state is AllCharactersInitial ? const AllCharactersLoad() : AllCharactersPaging(state.characters??[]));
     try {
