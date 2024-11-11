@@ -4,7 +4,6 @@ class Personal {
   final String? bloodType;
   final String? status;
   final String? tailedBeast;
-  final String? clan;
 
   Personal({
     this.birthdate,
@@ -12,7 +11,6 @@ class Personal {
     this.bloodType,
     this.status,
     this.tailedBeast,
-    this.clan,
   });
 
   factory Personal.fromJson(Map<String, dynamic>? json) {
@@ -22,7 +20,6 @@ class Personal {
       bloodType: json?['bloodType'] as String?,
       status: json?['status'] as String?,
       tailedBeast: json?['tailedBeast'] as String?,
-      clan: json?['clan'] as String?,
     );
   }
 }
