@@ -9,7 +9,6 @@ class AppImage {
   static const akatsuki = '$image/akatsuki.JPG';
   static const characters = '$image/characters.JPG';
   static const clans = '$image/clans.JPG';
-  static const kekkeigenkai = '$image/kekkeigenkai.PNG';
   static const tailedbeasts = '$image/tailedbeasts.JPG';
   static const teams = '$image/teams.JPG';
   static const villages = '$image/villages.WEBP';

@@ -15,10 +15,6 @@ List<MainScreenItem> mainScreenItems = [
       AppImage.villages
   ),
   MainScreenItem(
-      "kekkeigenkai",
-      AppImage.kekkeigenkai
-  ),
-  MainScreenItem(
       "tailedbeasts",
       AppImage.tailedbeasts
   ),

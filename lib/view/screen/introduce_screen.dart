@@ -104,7 +104,8 @@ class IntroduceView extends StatelessWidget {
           children: [
             Center(
               child: Image.asset(
-                  AppImage.narutoLogo
+                  AppImage.narutoLogo,
+                  width: screenWidth - 10,
               ),
             ),
             Positioned(
@@ -147,7 +148,10 @@ class IntroduceView extends StatelessWidget {
                 bottom: 110,
                 left: 10,
                 child: Container(
-                  color: Colors.grey,
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(15)
+                  ),
                   width: screenWidth,
                   height: 10,
                 )
@@ -156,7 +160,10 @@ class IntroduceView extends StatelessWidget {
                 bottom: 110,
                 left: 10,
                 child: Container(
-                  color: Colors.amber,
+                  decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(15)
+                  ),
                   width: (screenWidth*loadedElementWidth)/totalElement,
                   height: 10,
                 )
@@ -165,7 +172,10 @@ class IntroduceView extends StatelessWidget {
                 bottom: 50,
                 left: 10,
                 child: Container(
-                  color: Colors.grey,
+                  decoration: BoxDecoration(
+                      color: Colors.grey,
+                      borderRadius: BorderRadius.circular(15)
+                  ),
                   width: screenWidth,
                   height: 10,
                 )
@@ -174,7 +184,10 @@ class IntroduceView extends StatelessWidget {
                 bottom: 50,
                 left: 10,
                 child: Container(
-                  color: Colors.amber,
+                  decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(15)
+                  ),
                   width: (screenWidth*loadedPartWidth)/6,
                   height: 10,
                 )

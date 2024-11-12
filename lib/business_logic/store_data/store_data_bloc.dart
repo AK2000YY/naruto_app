@@ -104,6 +104,7 @@ class StoreDataBloc extends Bloc<StoreDataEvent, StoreDataState> {
           } break;
         }
       }
+      _databaseRepository.close();
     } catch(err) {
       emit(StoreDataFailure(state.tableIndex, state.loadedElements, _tableElementsNumber[state.tableIndex], err.toString()));
     }
