@@ -19,8 +19,7 @@ class EditDistance {
     if(i == n) return m - j;
     if(j == m) return n - i;
     if(memo[i][j] != -1) return memo[i][j];
-    int resEqual = 1000000000;
-    if(s1[i] == s2[j]) resEqual = calc(i, j);
+    int resEqual = s1[i] == s2[j] ? calc(i + 1, j + 1) : 1000000000;
     int resInsert = calc(i + 1, j) + 1;
     int resDelete = calc(i, j + 1) + 1;
     int resReplace = calc(i + 1, j + 1) + 1;
