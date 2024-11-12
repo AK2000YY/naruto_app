@@ -12,20 +12,19 @@ class EditDistance {
   EditDistance(this.s1, this.s2) {
     n = s1.length;
     m = s2.length;
-    int size = n > m ? n : m;
-    memo = List.generate(size, (_) => List.filled(size, -1));
+    memo = List.generate(n, (_) => List.filled(m, -1));
   }
 
   int calc(int i, int j) {
     if(i == n) return m - j;
     if(j == m) return n - i;
     if(memo[i][j] != -1) return memo[i][j];
-    int res1 = 1000000000;
-    if(s1[i] == s2[j]) res1 = calc(i, j);
-    int res2 = calc(i + 1, j) + 1;
-    int res3 = calc(i, j + 1) + 1;
-    int res4 = calc(i + 1, j + 1) + 1;
-    memo[i][j] = min(min(res1, res2), min(res3, res4));
+    int resEqual = 1000000000;
+    if(s1[i] == s2[j]) resEqual = calc(i, j);
+    int resInsert = calc(i + 1, j) + 1;
+    int resDelete = calc(i, j + 1) + 1;
+    int resReplace = calc(i + 1, j + 1) + 1;
+    memo[i][j] = min(min(resEqual, resInsert), min(resDelete, resReplace));
     return memo[i][j];
   }
 
