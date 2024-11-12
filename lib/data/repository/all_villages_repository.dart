@@ -20,7 +20,7 @@ class AllVillagesRepository {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> body = json.decode(response.body);
-      final List<dynamic> villagesJson = body['characters'];
+      final List<dynamic> villagesJson = body['villages'];
       return villagesJson.map((villageJson) {
         final map = villageJson as Map<String, dynamic>;
         return Village.fromJson(map);

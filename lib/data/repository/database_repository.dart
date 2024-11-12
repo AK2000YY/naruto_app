@@ -36,6 +36,8 @@ class DatabaseRepository {
         await batch.commit(noResult: true);
       });
     } catch(err) {
+      print("ak2000yy database");
+      print(err);
       throw Exception("Failed to insert elements");
     }
   }

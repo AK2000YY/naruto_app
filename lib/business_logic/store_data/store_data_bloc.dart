@@ -45,67 +45,67 @@ class StoreDataBloc extends Bloc<StoreDataEvent, StoreDataState> {
           case 0: {
             List<Character>? characterListStored = await _databaseRepository.getData<Character>(_tableNames[state.tableIndex], Character.fromMap);
             while(characterListStored?.length != _tableElementsNumber[state.tableIndex]) {
-              emit(StoreDataSuccess(state.tableIndex, characterListStored!.length, false));
+              emit(StoreDataSuccess(state.tableIndex, characterListStored!.length, _tableElementsNumber[state.tableIndex], false));
               List<Character> characterListLoaded = await _allCharactersRepository.getCharacters((characterListStored.length/10).floor() + 1);
-              characterListStored = await _databaseRepository.getData<Character>(_tableNames[state.tableIndex], Character.fromMap);
               await _databaseRepository.insertData<Character>(characterListLoaded, _tableNames[state.tableIndex], (character) => character.toMap());
+              characterListStored = await _databaseRepository.getData<Character>(_tableNames[state.tableIndex], Character.fromMap);
             }
-            emit(StoreDataSuccess(state.tableIndex + 1, 0, false));
+            emit(StoreDataSuccess(state.tableIndex + 1, 0, _tableElementsNumber[state.tableIndex + 1], false));
           } break;
           case 1: {
             List<Clan>? clanListStored = await _databaseRepository.getData<Clan>(_tableNames[state.tableIndex], Clan.fromMap);
             while(clanListStored?.length != _tableElementsNumber[state.tableIndex]) {
-              emit(StoreDataSuccess(state.tableIndex, clanListStored!.length, false));
+              emit(StoreDataSuccess(state.tableIndex, clanListStored!.length, _tableElementsNumber[state.tableIndex], false));
               List<Clan> clanListLoaded = await _allClansRepository.getClans((clanListStored.length/10).floor() + 1);
-              clanListStored = await _databaseRepository.getData<Clan>(_tableNames[state.tableIndex], Clan.fromMap);
               await _databaseRepository.insertData<Clan>(clanListLoaded, _tableNames[state.tableIndex], (clan) => clan.toMap());
+              clanListStored = await _databaseRepository.getData<Clan>(_tableNames[state.tableIndex], Clan.fromMap);
             }
-            emit(StoreDataSuccess(state.tableIndex + 1, 0, false));
+            emit(StoreDataSuccess(state.tableIndex + 1, 0, _tableElementsNumber[state.tableIndex + 1], false));
           } break;
           case 2: {
             List<Village>? villageListStored = await _databaseRepository.getData<Village>(_tableNames[state.tableIndex], Village.fromMap);
             while(villageListStored?.length != _tableElementsNumber[state.tableIndex]) {
-              emit(StoreDataSuccess(state.tableIndex, villageListStored!.length, false));
+              emit(StoreDataSuccess(state.tableIndex, villageListStored!.length, _tableElementsNumber[state.tableIndex], false));
               List<Village> villageListLoaded = await _allVillagesRepository.getVillages((villageListStored.length/10).floor() + 1);
-              villageListStored = await _databaseRepository.getData<Village>(_tableNames[state.tableIndex], Village.fromMap);
               await _databaseRepository.insertData<Village>(villageListLoaded, _tableNames[state.tableIndex], (village) => village.toMap());
+              villageListStored = await _databaseRepository.getData<Village>(_tableNames[state.tableIndex], Village.fromMap);
             }
-            emit(StoreDataSuccess(state.tableIndex + 1, 0, false));
+            emit(StoreDataSuccess(state.tableIndex + 1, 0, _tableElementsNumber[state.tableIndex + 1], false));
           } break;
           case 3: {
             List<TailedBeast>? tailedBeastListStored = await _databaseRepository.getData<TailedBeast>(_tableNames[state.tableIndex], TailedBeast.fromMap);
             while(tailedBeastListStored?.length != _tableElementsNumber[state.tableIndex]) {
-              emit(StoreDataSuccess(state.tableIndex, tailedBeastListStored!.length, false));
+              emit(StoreDataSuccess(state.tableIndex, tailedBeastListStored!.length, _tableElementsNumber[state.tableIndex], false));
               List<TailedBeast> tailedBeastListLoaded = await _allTailedBeastsRepository.getTailedBeasts((tailedBeastListStored.length/10).floor() + 1);
-              tailedBeastListStored = await _databaseRepository.getData<TailedBeast>(_tableNames[state.tableIndex], TailedBeast.fromMap);
               await _databaseRepository.insertData<TailedBeast>(tailedBeastListLoaded, _tableNames[state.tableIndex], (tailedBeast) => tailedBeast.toMap());
+              tailedBeastListStored = await _databaseRepository.getData<TailedBeast>(_tableNames[state.tableIndex], TailedBeast.fromMap);
             }
-            emit(StoreDataSuccess(state.tableIndex + 1, 0, false));
+            emit(StoreDataSuccess(state.tableIndex + 1, 0, _tableElementsNumber[state.tableIndex + 1], false));
           } break;
           case 4: {
             List<Team>? teamListStored = await _databaseRepository.getData<Team>(_tableNames[state.tableIndex], Team.fromMap);
             while(teamListStored?.length != _tableElementsNumber[state.tableIndex]) {
-              emit(StoreDataSuccess(state.tableIndex, teamListStored!.length, false));
+              emit(StoreDataSuccess(state.tableIndex, teamListStored!.length, _tableElementsNumber[state.tableIndex], false));
               List<Team> teamListLoaded = await _allTeamsRepository.getTeams((teamListStored.length/10).floor() + 1);
-              teamListStored = await _databaseRepository.getData<Team>(_tableNames[state.tableIndex], Team.fromMap);
               await _databaseRepository.insertData<Team>(teamListLoaded, _tableNames[state.tableIndex], (team) => team.toMap());
+              teamListStored = await _databaseRepository.getData<Team>(_tableNames[state.tableIndex], Team.fromMap);
             }
-            emit(StoreDataSuccess(state.tableIndex + 1, 0, false));
+            emit(StoreDataSuccess(state.tableIndex + 1, 0, _tableElementsNumber[state.tableIndex + 1], false));
           } break;
           case 5: {
             List<Akatsuki>? akatsukiListStored = await _databaseRepository.getData<Akatsuki>(_tableNames[state.tableIndex], Akatsuki.fromMap);
             while(akatsukiListStored?.length != _tableElementsNumber[state.tableIndex]) {
-              emit(StoreDataSuccess(state.tableIndex, akatsukiListStored!.length, false));
+              emit(StoreDataSuccess(state.tableIndex, akatsukiListStored!.length, _tableElementsNumber[state.tableIndex], false));
               List<Akatsuki> akatsukiListLoaded = await _allAkatsukiRepository.getAkatsuki((akatsukiListStored.length/10).floor() + 1);
-              akatsukiListStored = await _databaseRepository.getData<Akatsuki>(_tableNames[state.tableIndex], Akatsuki.fromMap);
               await _databaseRepository.insertData<Akatsuki>(akatsukiListLoaded, _tableNames[state.tableIndex], (akatsuki) => akatsuki.toMap());
+              akatsukiListStored = await _databaseRepository.getData<Akatsuki>(_tableNames[state.tableIndex], Akatsuki.fromMap);
             }
-            emit(StoreDataSuccess(state.tableIndex , _tableElementsNumber[state.tableIndex], true));
+            emit(StoreDataSuccess(state.tableIndex , _tableElementsNumber[state.tableIndex], _tableElementsNumber[state.tableIndex], true));
           } break;
         }
       }
     } catch(err) {
-      emit(StoreDataFailure(state.tableIndex, state.loadedElements, err.toString()));
+      emit(StoreDataFailure(state.tableIndex, state.loadedElements, _tableElementsNumber[state.tableIndex], err.toString()));
     }
   }
 

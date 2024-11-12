@@ -20,7 +20,7 @@ class AllAkatsukiRepository {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> body = json.decode(response.body);
-      final List<dynamic> akatsukiJson = body['characters'];
+      final List<dynamic> akatsukiJson = body['akatsuki'];
       return akatsukiJson.map((akatsukiJson) {
         final map = akatsukiJson as Map<String, dynamic>;
         return Akatsuki.fromJson(map);

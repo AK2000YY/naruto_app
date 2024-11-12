@@ -21,7 +21,7 @@ class AllTailedBeastsRepository {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> body = json.decode(response.body);
-      final List<dynamic> tailedBeastsJson = body['characters'];
+      final List<dynamic> tailedBeastsJson = body['tailedBeasts'];
       return tailedBeastsJson.map((tailedBeastJson) {
         final map = tailedBeastJson as Map<String, dynamic>;
         return TailedBeast.fromJson(map);

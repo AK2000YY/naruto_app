@@ -21,7 +21,7 @@ class AllTeamsRepository {
 
     if (response.statusCode == 200) {
       final Map<String, dynamic> body = json.decode(response.body);
-      final List<dynamic> teamsJson = body['characters'];
+      final List<dynamic> teamsJson = body['teams'];
       return teamsJson.map((teamJson) {
         final map = teamJson as Map<String, dynamic>;
         return Team.fromJson(map);
