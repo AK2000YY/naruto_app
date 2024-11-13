@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:naruto_app/core/localization/localization.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField({super.key});
+
+  final Function(String) onTap;
+
+  const CustomTextField({super.key, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onChanged: onTap,
       style: const TextStyle(
           color: Colors.amber
       ),
       cursorColor: Colors.amber,
       decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(horizontal: 16),
+          contentPadding: const EdgeInsets.symmetric(horizontal: 16),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(50),
               borderSide: const BorderSide(color: Colors.grey)

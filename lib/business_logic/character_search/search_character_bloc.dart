@@ -1,3 +1,4 @@
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naruto_app/core/classes/edit_distance.dart';
@@ -15,7 +16,8 @@ class SearchCharacterBloc extends Bloc<SearchCharacterEvent, SearchCharacterStat
   SearchCharacterBloc(this._databaseRepository) : super(const SearchCharacterInitial()) {
     on<SearchCharacterEvent>((event, emit) {
       on<SearchCharacterStarted>(
-        _onStart
+        _onStart,
+        transformer: restartable()
       );
     });
   }
@@ -24,7 +26,7 @@ class SearchCharacterBloc extends Bloc<SearchCharacterEvent, SearchCharacterStat
     List<Character>? characters = await _initializeCharacters();
     List<MapEntry<int, Character>> searchResults = [];
     characters?.forEach((character) {
-      EditDistance editDistance = EditDistance(event.characterName, character.name!);
+      EditDistance editDistance = EditDistance(event.characterName.toLowerCase(), character.name!.toLowerCase());
       int priority = editDistance.calc(0, 0);
       searchResults.add(MapEntry(priority, character));
     });
