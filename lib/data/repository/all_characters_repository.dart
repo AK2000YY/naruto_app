@@ -29,4 +29,24 @@ class AllCharactersRepository {
 
     throw Exception("connection failed!");
   }
+
+  Future<Character> getCharacter(int id) async {
+    final response = await httpClient.get(
+        Uri.https(
+            'narutodb.xyz',
+            '/api/character/$id',
+        )
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> body = json.decode(response.body);
+      final dynamic charactersJson = body['characters'];
+      return charactersJson.map((characterJson) {
+        final map = characterJson as Map<String, dynamic>;
+        return Character.fromJson(map);
+      });
+    }
+
+    throw Exception("connection failed!");
+  }
 }
