@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naruto_app/business_logic/character_search/search_character_bloc.dart';
 import 'package:naruto_app/core/constant/color.dart';
-import 'package:naruto_app/data/model/character.dart';
 import 'package:naruto_app/data/repository/database_repository.dart';
 import 'package:naruto_app/view/widget/characters/custom_text_field.dart';
+import 'package:naruto_app/view/widget/characters/search_list_result.dart';
+
 
 class SearchPart extends StatelessWidget {
   const SearchPart({super.key});
@@ -17,6 +18,7 @@ class SearchPart extends StatelessWidget {
     );
   }
 }
+
 
 class PartSearchBlocProvider extends StatelessWidget {
   const PartSearchBlocProvider({super.key});
@@ -39,7 +41,7 @@ class PartSearchBlocBuilder extends StatelessWidget {
     return BlocBuilder<SearchCharacterBloc, SearchCharacterState>(
         builder: (context, state) =>
             PartSearchView(
-              characters: state is SearchCharacterInitial ? [] : state.characters,
+              searchCharacterState: state,
             )
     );
   }
@@ -48,9 +50,9 @@ class PartSearchBlocBuilder extends StatelessWidget {
 
 class PartSearchView extends StatelessWidget {
 
-  final List<Character> characters;
+  final SearchCharacterState searchCharacterState;
 
-  const PartSearchView({super.key, required this.characters});
+  const PartSearchView({super.key, required this.searchCharacterState});
 
   @override
   Widget build(BuildContext context) {
@@ -68,26 +70,20 @@ class PartSearchView extends StatelessWidget {
               },
             ),
           ),
-          Expanded(
-              child: characters.isNotEmpty ?
-                ListView.builder(
-                    itemCount: characters.length,
-                    itemBuilder: (context, index) =>
-                        Container(
-                          height: 40,
-                          width: double.infinity,
-                          color: Colors.black45,
-                          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                          child: Center(
-                            child: Text(characters[index].name!, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white)),
-                          ),
-                        )
-                ) :
-                Center(
-                  child: Text("no result", style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white)),
+          if(searchCharacterState is SearchCharacterInitial)
+            Expanded(
+                child: Center(
+                    child: Text("no results", style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white))
                 )
-
-          )
+            )
+          else if(searchCharacterState is SearchCharacterSuccess)
+            SearchListResult(searchCharacterState: searchCharacterState)
+          else
+            const Expanded(
+                child: Center(
+                  child: CircularProgressIndicator(color: Colors.amber),
+                )
+            )
         ],
       ),
     );

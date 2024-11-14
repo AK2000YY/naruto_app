@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,10 +25,11 @@ class SearchCharacterBloc extends Bloc<SearchCharacterEvent, SearchCharacterStat
   }
 
   _onStart(SearchCharacterStarted event, Emitter<SearchCharacterState> emit) async {
+    emit(SearchCharacterLoading(state.characters));
     List<Character>? characters = await _initializeCharacters();
     List<MapEntry<int, Character>> searchResults = [];
     characters?.forEach((character) {
-      EditDistance editDistance = EditDistance(event.characterName.toLowerCase(), character.name!.toLowerCase());
+      EditDistance editDistance = EditDistance(event.characterName.toLowerCase(), character.name!.toLowerCase().substring(0, min(event.characterName.length - 1 , character.name!.toLowerCase().length - 1)));
       int priority = editDistance.calc(0, 0);
       searchResults.add(MapEntry(priority, character));
     });

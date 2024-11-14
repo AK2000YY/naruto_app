@@ -14,6 +14,10 @@ final class SearchCharacterInitial extends SearchCharacterState {
   const SearchCharacterInitial() : super(const []);
 }
 
+final class SearchCharacterLoading extends SearchCharacterState {
+  const SearchCharacterLoading(super.characters);
+}
+
 final class SearchCharacterSuccess extends SearchCharacterState {
   const SearchCharacterSuccess(super.characters);
 }
