@@ -31,13 +31,15 @@ class Character {
   Map<String, Object?> toMap() {
     return {
       "id": id,
-      "name": name
+      "name": name,
+      "image": images!.isNotEmpty? images![0] : ""
     };
   }
 
   Character.fromMap(Map<String, Object?> map) {
     id = map["id"] as int?;
     name = map["name"] as String;
+    images = [map["image"] as String];
   }
 
 }

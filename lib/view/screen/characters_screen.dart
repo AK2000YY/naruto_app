@@ -3,8 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naruto_app/business_logic/all_characters/all_characters_bloc.dart';
 import 'package:naruto_app/core/constant/color.dart';
 import 'package:naruto_app/core/localization/localization.dart';
-import 'package:naruto_app/data/repository/all_characters_repository.dart';
-import 'package:http/http.dart' as http;
+import 'package:naruto_app/data/repository/database_repository.dart';
 import 'package:naruto_app/view/widget/characters/search_part.dart';
 
 import '../widget/characters/character_part.dart';
@@ -16,7 +15,7 @@ class CharactersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider(
-        create: (_) => AllCharactersRepository(http.Client()),
+        create: (_) => DatabaseRepository(),
         child: const ForAllCharacterBloc()
     );
   }
@@ -41,7 +40,7 @@ class _ForAllCharacterBlocState extends State<ForAllCharacterBloc> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => AllCharactersBloc(context.read<AllCharactersRepository>())..add(AllCharactersFetched()),
+        create: (_) => AllCharactersBloc(context.read<DatabaseRepository>())..add(AllCharactersFetched()),
         child: //const AllCharacters()
         Scaffold(
           backgroundColor: AppColor.backGround,

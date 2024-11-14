@@ -2,7 +2,7 @@ import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:naruto_app/data/model/character.dart';
-import 'package:naruto_app/data/repository/all_characters_repository.dart';
+import 'package:naruto_app/data/repository/database_repository.dart';
 
 part 'all_characters_event.dart';
 part 'all_characters_state.dart';
@@ -10,9 +10,9 @@ part 'all_characters_state.dart';
 
 class AllCharactersBloc extends Bloc<AllCharactersEvent, AllCharactersState> {
 
-  final AllCharactersRepository _charactersRepository;
+  final DatabaseRepository _databaseRepository;
 
-  AllCharactersBloc(this._charactersRepository) : super(const AllCharactersInitial([])) {
+  AllCharactersBloc(this._databaseRepository) : super(const AllCharactersInitial([])) {
     on<AllCharactersFetched>(
         _onFetched,
         transformer: droppable()
@@ -23,10 +23,10 @@ class AllCharactersBloc extends Bloc<AllCharactersEvent, AllCharactersState> {
     if(state.hasReachedMax ?? false) return;
     emit(state is AllCharactersInitial ? const AllCharactersLoad() : AllCharactersPaging(state.characters??[]));
     try {
-      int page = (state.characters!.length/10).floor() + 1;
-      List<Character> characters = await _charactersRepository.getCharacters(page);
-      emit(characters.isEmpty ? AllCharactersSuccess(state.characters!, true) : AllCharactersSuccess([...?state.characters, ...characters], false));
-    } catch(err) {
+      List<Character>? characters = await _databaseRepository.getItemsPaginated("characters", state.characters!.length, Character.fromMap);
+      emit(characters!.isEmpty ? AllCharactersSuccess(state.characters!, true) : AllCharactersSuccess([...?state.characters, ...characters], false));
+    }
+    catch (err) {
       emit(AllCharactersFailure(state.characters!, err.toString()));
     }
   }
