@@ -16,7 +16,7 @@ class DatabaseRepository {
   }
 
   _onCreate(Database? db, int version) async {
-    await db?.execute("CREATE TABLE characters(id INTEGER PRIMARY KEY, name TEXT)");
+    await db?.execute("CREATE TABLE characters(id INTEGER PRIMARY KEY, name TEXT, image TEXT)");
     await db?.execute("CREATE TABLE clans(id INTEGER PRIMARY KEY, name TEXT)");
     await db?.execute("CREATE TABLE villages(id INTEGER PRIMARY KEY, name TEXT)");
     await db?.execute("CREATE TABLE kekkei_genkai(id INTEGER PRIMARY KEY, name TEXT)");
@@ -36,8 +36,6 @@ class DatabaseRepository {
         await batch.commit(noResult: true);
       });
     } catch(err) {
-      print("ak2000yy database");
-      print(err);
       throw Exception("Failed to insert elements");
     }
   }
@@ -48,7 +46,21 @@ class DatabaseRepository {
       List<Map<String, Object?>>? result = await _db?.query(tableName);
       return result?.map((it) => fromMap(it)).toList();
     } catch(err) {
-      throw Exception("Failed to get elements");
+      throw Exception(err);
+    }
+  }
+
+  Future<List<T>?> getItemsPaginated<T>(String tableName, int offset, T Function(Map<String, Object?> item) fromMap) async {
+    await _open();
+    try {
+      final List<Map<String, Object?>>? results = await _db?.query(
+        tableName,
+        limit: 10,
+        offset: offset,
+      );
+      return results?.map((it) => fromMap(it)).toList();
+    } catch(err) {
+      throw Exception(err);
     }
   }
 
