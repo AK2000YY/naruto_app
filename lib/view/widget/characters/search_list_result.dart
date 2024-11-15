@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:naruto_app/business_logic/character_search/search_character_bloc.dart';
+import 'package:naruto_app/core/constant/color.dart';
+import 'package:naruto_app/view/widget/characters/search_list_item.dart';
 
 class SearchListResult extends StatelessWidget {
 
@@ -15,13 +17,15 @@ class SearchListResult extends StatelessWidget {
             itemCount: searchCharacterState.characters.length,
             itemBuilder: (context, index) =>
                 Container(
-                  height: 40,
+                  height: 60,
+                  padding: const EdgeInsets.all(10),
                   width: double.infinity,
-                  color: Colors.black45,
-                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Center(
-                    child: Text(searchCharacterState.characters[index].name!, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.white)),
+                  decoration: BoxDecoration(
+                    color: AppColor.onBackGround,
+                    borderRadius: BorderRadius.circular(10)
                   ),
+                  margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child: SearchListItem(character: searchCharacterState.characters[index]),
                 )
         ) :
         Center(

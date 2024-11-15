@@ -13,7 +13,7 @@ part 'search_character_state.dart';
 class SearchCharacterBloc extends Bloc<SearchCharacterEvent, SearchCharacterState> {
 
   final DatabaseRepository _databaseRepository;
-  List<Character>? characters;
+  List<Character>? _characters;
 
   SearchCharacterBloc(this._databaseRepository) : super(const SearchCharacterInitial()) {
     on<SearchCharacterEvent>((event, emit) {
@@ -26,18 +26,18 @@ class SearchCharacterBloc extends Bloc<SearchCharacterEvent, SearchCharacterStat
 
   _onStart(SearchCharacterStarted event, Emitter<SearchCharacterState> emit) async {
     emit(SearchCharacterLoading(state.characters));
-    List<Character>? characters = await _initializeCharacters();
+    await _initializeCharacters();
     List<MapEntry<int, Character>> searchResults = [];
-    characters?.forEach((character) {
+    _characters?.forEach((character) {
       EditDistance editDistance = EditDistance(event.characterName.toLowerCase(), character.name!.toLowerCase().substring(0, min(event.characterName.length - 1 , character.name!.toLowerCase().length - 1)));
       int priority = editDistance.calc(0, 0);
       searchResults.add(MapEntry(priority, character));
     });
-    emit(SearchCharacterSuccess(_getSortedValueByKey(searchResults)));
+    emit(SearchCharacterSuccess(_getSortedValueByKey(searchResults).sublist(0, 10)));
   }
 
-  Future<List<Character>?> _initializeCharacters() async {
-    return characters ?? await _databaseRepository.getData<Character>("characters", Character.fromMap);
+  _initializeCharacters() async {
+    _characters = _characters ?? await _databaseRepository.getData<Character>("characters", Character.fromMap);
   }
 
   List<Character> _getSortedValueByKey(List<MapEntry<int, Character>> searchResults) {
