@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+Copyright © AK2000YY, 2024. All rights reserved.
+Unauthorized copying of this file, via any medium, is strictly prohibited
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
