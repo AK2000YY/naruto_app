@@ -1,3 +1,6 @@
+// Copyright © AK2000YY, 2024. All rights reserved.
+// Unauthorized copying of this file, via any medium, is strictly prohibited
+
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -1,3 +1,6 @@
+// Copyright © AK2000YY, 2024. All rights reserved.
+// Unauthorized copying of this file, via any medium, is strictly prohibited
+
 import 'dart:math';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart';

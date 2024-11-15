@@ -1,3 +1,6 @@
+// Copyright © AK2000YY, 2024. All rights reserved.
+// Unauthorized copying of this file, via any medium, is strictly prohibited
+
 part of 'search_character_bloc.dart';
 
 sealed class SearchCharacterState extends Equatable {

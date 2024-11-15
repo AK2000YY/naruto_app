@@ -1,10 +1,12 @@
+// Copyright © AK2000YY, 2024. All rights reserved.
+// Unauthorized copying of this file, via any medium, is strictly prohibited
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:naruto_app/business_logic/language/language_bloc.dart';
 import 'package:naruto_app/core/localization/localization.dart';
 import 'package:naruto_app/view/screen/introduce_screen.dart';
-// import 'package:naruto_app/view/screen/language_screen.dart';
 
 void main() {
   runApp(const MyApp());

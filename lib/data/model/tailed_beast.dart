@@ -1,3 +1,6 @@
+// Copyright © AK2000YY, 2024. All rights reserved.
+// Unauthorized copying of this file, via any medium, is strictly prohibited
+
 import 'package:naruto_app/data/model/personal.dart';
 
 import '../../core/function/pars_data.dart';
