@@ -21,6 +21,32 @@ class MainScreen extends StatelessWidget {
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(color: Colors.white)
         ),
         centerTitle: true,
+        iconTheme: const IconThemeData(
+          color: Colors.white
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: AppColor.onBackGround,
+        child: Column(
+          children: [
+            const Padding(padding: EdgeInsets.only(top: 18)),
+            ListTile(
+              leading: const Icon(Icons.language),
+              trailing: const Icon(Icons.keyboard_arrow_down),
+              title: Text("Language", style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.white)),
+              iconColor: Colors.grey
+            ),
+            ListTile(
+              leading: const Icon(Icons.history),
+              title:  Text("Search History", style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.white)),
+              iconColor: Colors.grey
+            ),
+            const Spacer(),
+            ListTile(
+                title:  Text("About Us", style: Theme.of(context).textTheme.labelMedium?.copyWith(color: Colors.white),textAlign: TextAlign.center,)
+            )
+          ],
+        ),
       ),
       body: Container(
         color: AppColor.backGround,
